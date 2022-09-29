@@ -21,6 +21,12 @@ class StudentsController < ApplicationController
 
   # GET /students/1/edit_score
   def edit_score
+    @student_id = params[:id]
+    @list_scores = Score.where(student_id: @student_id)
+    @average_score = Score.where(student_id: @student_id).average(:point)
+    @max_score = Score.where(student_id: @student_id).maximum(:point)
+    
+    @max_subject = Score.where(student_id: @student_id).where(point: @max_score).pluck(:subject)[0]
   end
 
   # POST /students or /students.json

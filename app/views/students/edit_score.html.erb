@@ -1,1 +1,45 @@
-<h1> Edit Score <h1>
+<style>
+  .flex{
+		display:flex;
+    align-items:center;
+    column-gap: 18px;
+	}
+  .container {
+    display: flex;
+    flex-direction: column;
+  }
+</style>
+
+<div id="scores">
+    <div>Show all of student score</div>
+    <div class = "container">
+    <% @list_scores.each do |score| %>
+    <div class = "flex">
+        <div class = "flex">
+            <div>Subject</div>
+            <div><%= score.subject %></div>
+        </div>
+         <div class = "flex">
+            <div>Point</div>
+            <div><%= score.point %></div>
+        </div>
+        <div class = "flex">
+            <div>Grade</div>
+            <div><%= score.grade %></div>
+        </div>
+         <div class = "flex">
+            <div>Student_ID</div>
+            <div><%= score.student_id %></div>
+        </div>
+    </div>
+    <div class = "flex">
+      <%= link_to "Show this score", score %>
+      <%= button_to "Edit the score",score, method: :update %>
+    </div>
+      <%= button_to "Destroy this score", score, method: :delete %>
+  <% end %>
+    </div>
+    <div>Average score: <%= @average_score %></div>
+     <div>Max score's subject: <%= @max_subject %></div>
+      <div>Max score: <%= @max_score %></div>
+</div>
