@@ -27,6 +27,8 @@ class StudentsController < ApplicationController
     @max_score = Score.where(student_id: @student_id).maximum(:point)
     
     @max_subject = Score.where(student_id: @student_id).where(point: @max_score).pluck(:subject)[0]
+
+    session[:from_student] = true
   end
 
   # POST /students or /students.json

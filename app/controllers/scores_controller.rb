@@ -9,6 +9,7 @@ class ScoresController < ApplicationController
 
   # GET /scores/1 or /scores/1.json
   def show
+    session[:from_student] = false
   end
 
   # GET /scores/new

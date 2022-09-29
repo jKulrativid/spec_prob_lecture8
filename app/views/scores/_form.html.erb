@@ -26,10 +26,12 @@
     <%= form.text_field :grade %>
   </div>
 
+  <% if session[:from_student] == false %>
   <div>
     <%= form.label :student_id, style: "display: block" %>
     <%= form.text_field :student_id %>
   </div>
+  <% end %>
 
   <div>
     <%= form.submit %>
