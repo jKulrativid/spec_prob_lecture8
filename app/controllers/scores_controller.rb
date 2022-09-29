@@ -3,6 +3,7 @@ class ScoresController < ApplicationController
 
   # GET /scores or /scores.json
   def index
+    session[:prev_uri] = "/scores"
     @scores = Score.all
   end
 
@@ -12,11 +13,12 @@ class ScoresController < ApplicationController
 
   # GET /scores/new
   def new
-    @score = Score.new
+    redirect_to "/scores/-1/edit"
   end
 
   # GET /scores/1/edit
   def edit
+    session[:prev_uri] = "/scores/" + params[:id] + "/edit"
   end
 
   # POST /scores or /scores.json
@@ -60,7 +62,12 @@ class ScoresController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_score
-      @score = Score.find(params[:id])
+      @score = Score.find_by_id(params[:id])
+      if @score == nil 
+        @score = Score.create(student_id: 1)
+        @score.save
+        redirect_to "/scores/" + @score.id.to_s + "/edit"
+      end
     end
 
     # Only allow a list of trusted parameters through.

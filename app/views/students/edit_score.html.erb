@@ -34,9 +34,9 @@
     </div>
     <div class = "flex">
       <%= link_to "Show this score", score %>
-      <%= button_to "Edit the score",score, method: :update %>
+      <%= button_to "edit", "../../scores/" + score.id.to_s + "/edit", method: :get %>
     </div>
-      <%= button_to "Destroy this score", score, method: :delete %>
+      <%= button_to "delete", score, method: :delete %>
   <% end %>
     </div>
     <div>Average score: <%= @average_score %></div>
