@@ -4,12 +4,12 @@ class ScoresController < ApplicationController
   # GET /scores or /scores.json
   def index
     session[:prev_uri] = "/scores"
+    session[:from_student] = false
     @scores = Score.all
   end
 
   # GET /scores/1 or /scores/1.json
   def show
-    session[:from_student] = false
   end
 
   # GET /scores/new
