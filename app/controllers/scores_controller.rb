@@ -1,12 +1,5 @@
 class ScoresController < ApplicationController
-  before_action :validate
   before_action :set_score, only: %i[ show edit update destroy ]
-
-  def validate
-    if !session[:logged_in]
-      redirect_to "/students"
-    end
-  end
 
   # GET /scores or /scores.json
   def index

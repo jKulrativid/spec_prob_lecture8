@@ -1,13 +1,7 @@
 class StudentsController < ApplicationController
-  before_action :validate
+  skip_before_action :validate, only: [:index]
   before_action :set_student, only: %i[ show edit update destroy ]
   
-  def validate
-    if !session[:logged_in]
-      redirect_to "/students"
-    end
-  end
-
   # GET /students or /students.json
   def index
     @students = Student.all
