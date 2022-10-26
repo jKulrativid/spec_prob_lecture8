@@ -1,45 +1,65 @@
-<style>
-  .flex{
-		display:flex;
-    align-items:center;
-    column-gap: 18px;
-	}
-  .container {
-    display: flex;
-    flex-direction: column;
-  }
-</style>
-
-<div id="scores">
-    <div>Show all of student score</div>
-    <div class = "container">
-    <% @list_scores.each do |score| %>
-    <div class = "flex">
-        <div class = "flex">
-            <div>Subject</div>
-            <div><%= score.subject %></div>
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Lecture 7, 8, and 9</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+  </head>
+  <div class="score-container">
+    <h1>Show all of student score</h1>
+    <h5>Average score: <%= @average_score %></h5>
+    <h5>Max score's subject: <%= @max_subject %></h5>
+    <h5>Max score: <%= @max_score %></h5>
+      <% @list_scores.each do |score| %>
+        <div class="score-display">
+          <div class = "flex">
+            <div class = "flex">
+              <div>Subject : </div>
+              <div><%= score.subject %></div>
+            </div>
+            <div class = "flex">
+              <div>Point : </div>
+              <div><%= score.point %></div>
+            </div>
+            <div class = "flex">
+              <div>Grade : </div>
+              <div><%= score.grade %></div>
+            </div>
+          </div>
+          <div class = "flex">
+            <%= link_to "Show this score", score %>
+            <%= button_to "edit", "../../scores/" + score.id.to_s + "/edit", method: :get %>
+            <%= button_to "delete", score, method: :delete %>
+          </div>
         </div>
-         <div class = "flex">
-            <div>Point</div>
-            <div><%= score.point %></div>
-        </div>
-        <div class = "flex">
-            <div>Grade</div>
-            <div><%= score.grade %></div>
-        </div>
-         <div class = "flex">
-            <div>Student_ID</div>
-            <div><%= score.student_id %></div>
-        </div>
-    </div>
-    <div class = "flex">
-      <%= link_to "Show this score", score %>
-      <%= button_to "edit", "../../scores/" + score.id.to_s + "/edit", method: :get %>
-    </div>
-      <%= button_to "delete", score, method: :delete %>
-  <% end %>
-    </div>
-    <div>Average score: <%= @average_score %></div>
-     <div>Max score's subject: <%= @max_subject %></div>
-      <div>Max score: <%= @max_score %></div>
-</div>
+      <% end %>
+    
+  </div>
+  <style>
+    .score-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .score-display {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        max-width: 800px;
+        margin: 20px;
+        border: 3px;
+        padding: 10px 20px;
+        border-style: solid;
+    }
+    .flex{
+    		display:flex;
+      align-items:center;
+      column-gap: 18px;
+    	}
+    .container {
+      display: flex;
+      flex-direction: column;
+    }
+  </style>
+</head>

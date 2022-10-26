@@ -1,10 +1,35 @@
-<p style="color: green"><%= notice %></p>
-
-<%= render @student %>
-
-<div>
-  <%= link_to "Edit this student", edit_student_path(@student) %> |
-  <%= link_to "Back to students", students_path %>
-
-  <%= button_to "Destroy this student", @student, method: :delete %>
-</div>
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Lecture 7, 8, and 9</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+  </head>
+  <div class="student-container">
+    <div class="student-display">
+      <p style="color: green"><%= notice %></p>
+      <%= render @student %>
+      <div>
+        <%= link_to "Edit this student", edit_student_path(@student) %> |
+        <%= link_to "Back to students", students_path %>
+        <%= button_to "Destroy this student", @student, method: :delete %>
+      </div>
+    </div>
+  </div>
+  <style>
+    .student-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      .student-display {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        margin: 20px;
+        border: 3px;
+        padding: 10px 20px;
+        border-style: solid;
+      }
+  </style>
+</head>
